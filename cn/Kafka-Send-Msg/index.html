@@ -237,28 +237,6 @@
           
           
           <li>
-            <a href="/about/">
-              
-              关于
-              
-              
-            </a>
-          </li>
-          
-          
-          
-          <li>
-            <a href="/tags/">
-              
-              标签
-              
-              
-            </a>
-          </li>
-          
-          
-          
-          <li>
             <a href="/archive/">
               
               归档
@@ -273,6 +251,28 @@
             <a href="/categories/">
               
               分类
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/about/">
+              
+              关于
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/tags/">
+              
+              标签
               
               
             </a>
@@ -460,16 +460,16 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <p>####kafka 简介<br>
-Kafka 是一个分布式发布-订阅消息系统，它适合离线和在线消息，消息是保留在磁盘上的，并且有副本这个用来复制消息的东西，防止数据丢失。它运行时需要zookeeper的帮忙。它能与Flink和Spark有很好的集成，时常应用于流式数据分析。<br>
-####kafka特点<br>
-1.可靠性： 具有副本及容错机制。<br>
+        <h4 id="kafka-简介">kafka 简介</h4>
+<p>Kafka 是一个分布式发布-订阅消息系统，它适合离线和在线消息，消息是保留在磁盘上的，并且有副本这个用来复制消息的东西，防止数据丢失。它运行时需要zookeeper的帮忙。它能与Flink和Spark有很好的集成，时常应用于流式数据分析。</p>
+<h4 id="kafka特点">kafka特点</h4>
+<p>1.可靠性： 具有副本及容错机制。<br>
 2.可扩展性： kafka无需停机就可以扩展节点及节点上线。<br>
 3.持久性： 数据存储到磁盘，持久性保存。<br>
 4.性能： kafka具有高吞吐量，能处理达到TB级别的数据，而且稳定。<br>
-5.速度快： kafka的顺序写入和零拷贝技术使kafka更加迅速。<br>
-####kafka成员<br>
-1.<strong>producer(生产者)</strong>：  顾名思义，生产者就是生产消息的东西，就比如种西瓜的人，他就可以抽象成生产者。<br>
+5.速度快： kafka的顺序写入和零拷贝技术使kafka更加迅速。</p>
+<h4 id="kafka成员">kafka成员</h4>
+<p>1.<strong>producer(生产者)</strong>：  顾名思义，生产者就是生产消息的东西，就比如种西瓜的人，他就可以抽象成生产者。<br>
 2.<strong>consumer(消费者)</strong>：  既然有生产消息的，就会有消费消息的，就比如买西瓜的人，他就可以抽象成消费者。<br>
 3.<strong>topic(主题)</strong>：  kafka会将消息以topic为单位进行归类，它可以有零个也可以有多个，就比如卖西瓜的商贩，他就可以抽象成主题，种西瓜的人会将西瓜分给零个或无数个西瓜商贩。<br>
 4.<strong>parttion(分区)</strong>： 一个topic可以有多个分区，所有分区的的数据构成全部的topic数据。每一个分区会有一个编号(从0开始)，每一个分区内存的数据是有序的，但全部不保证有序(这里的有序是指生产顺序和消费顺序一致。)，就比如西瓜商贩车上不同的框，可以抽象成分区，有一块的三块的，分好了类，所有框里的瓜加起来就是西瓜商贩全部的。<br>
@@ -621,7 +621,7 @@ Kafka 是一个分布式发布-订阅消息系统，它适合离线和在线消�
         <div id="toc" class="toc-article">
         <strong class="toc-title">目录</strong>
         
-          <ol class="nav">none</ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#kafka-%E7%AE%80%E4%BB%8B"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">kafka 简介</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#kafka%E7%89%B9%E7%82%B9"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">kafka特点</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#kafka%E6%88%90%E5%91%98"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">kafka成员</span></a></li></ol>
         
         </div>
       </aside>
