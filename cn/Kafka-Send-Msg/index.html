@@ -142,7 +142,7 @@
   <link rel="canonical" href="https://jiur.xyz/cn/Kafka-Send-Msg/">
   <title>
     
-      Kafka Send Msg Process - either thin | or die
+      Kafka 入门学习 - either thin | or die
     
   </title>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -234,10 +234,12 @@
 
           
           
+          
+          
           <li>
-            <a href="/archive/">
+            <a href="/about/">
               
-              归档
+              关于
               
               
             </a>
@@ -245,12 +247,21 @@
           
           
           
-          
-          
           <li>
             <a href="/tags/">
               
               标签
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/archive/">
+              
+              归档
               
               
             </a>
@@ -268,17 +279,6 @@
           </li>
           
           
-          
-          <li>
-            <a href="/about/">
-              
-              关于
-              
-              
-            </a>
-          </li>
-          
-          
 
           
           <li>
@@ -290,30 +290,6 @@
           <!-- LangSelect -->
           
           
-          
-          <!-- LangSelect start -->
-          <!-- LangSelect -->
-<li>
-  <a id="lang-select-label"><i class="fa fa-globe"></i>
-    <span>
-      简体中文
-    </span>
-    <select id="lang-select" data-canonical="cn/Kafka-Send-Msg/">
-      
-      
-      <option value="en" >
-        English
-      </option>
-      
-      <option value="cn"  selected >
-        简体中文
-      </option>
-      
-    </select>
-  </a>
-</li>
-
-          <!-- LangSelect end -->
           
           
           
@@ -406,7 +382,7 @@
               <a class="tag" href="/tags/#Middleware" title="Middleware">Middleware</a>
               
             </div>
-            <h1>Kafka Send Msg Process</h1>
+            <h1>Kafka 入门学习</h1>
             <h2 class="subheading"></h2>
             <span class="meta">
               Posted by Mr.JiuR on
@@ -418,11 +394,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">1</span> Minutes
+              Estimated Reading Time <span class="post-count">2</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">5</span> In Total
+              Words <span class="post-count">798</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -484,7 +460,22 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h3 id="kafka-发送消息">kafka 发送消息</h3>
+        <p>####kafka 简介<br>
+Kafka 是一个分布式发布-订阅消息系统，它适合离线和在线消息，消息是保留在磁盘上的，并且有副本这个用来复制消息的东西，防止数据丢失。它运行时需要zookeeper的帮忙。它能与Flink和Spark有很好的集成，时常应用于流式数据分析。<br>
+####kafka特点<br>
+1.可靠性： 具有副本及容错机制。<br>
+2.可扩展性： kafka无需停机就可以扩展节点及节点上线。<br>
+3.持久性： 数据存储到磁盘，持久性保存。<br>
+4.性能： kafka具有高吞吐量，能处理达到TB级别的数据，而且稳定。<br>
+5.速度快： kafka的顺序写入和零拷贝技术使kafka更加迅速。<br>
+####kafka成员<br>
+1.<strong>producer(生产者)</strong>：  顾名思义，生产者就是生产消息的东西，就比如种西瓜的人，他就可以抽象成生产者。<br>
+2.<strong>consumer(消费者)</strong>：  既然有生产消息的，就会有消费消息的，就比如买西瓜的人，他就可以抽象成消费者。<br>
+3.<strong>topic(主题)</strong>：  kafka会将消息以topic为单位进行归类，它可以有零个也可以有多个，就比如卖西瓜的商贩，他就可以抽象成主题，种西瓜的人会将西瓜分给零个或无数个西瓜商贩。<br>
+4.<strong>parttion(分区)</strong>： 一个topic可以有多个分区，所有分区的的数据构成全部的topic数据。每一个分区会有一个编号(从0开始)，每一个分区内存的数据是有序的，但全部不保证有序(这里的有序是指生产顺序和消费顺序一致。)，就比如西瓜商贩车上不同的框，可以抽象成分区，有一块的三块的，分好了类，所有框里的瓜加起来就是西瓜商贩全部的。<br>
+5.<strong>consumer group(消费者组)</strong>： 它由一个或者多个消费者组成，同一组中的消费者只能对同一条消息消费一次。每个组都有一个id，每个分区只能由同一个消费组内的一个消费者来消费，分区的数量决定了每个消费者组中并发消费者的最大数量。就比如你和你的小伙伴们，就可以抽象成一个消费者组。<br>
+6.<strong>message</strong>： 生产者发送的消息都会被kafka包装，他包装后信息依次是：1.存储消息在分区的位置信息。2.消息的大小。3.循环冗余校验。4.kafka服务程序协议版本号。5.压缩类型和编码类型。6. key的长度。7.消息长度。8.消息信息(value)。只有value才是真正的消息。就比如买的西瓜外面包了一层包装，说明了大小，产地等，只有里面的西瓜可以吃。<br>
+7.<strong>partition replicas(分区副本)</strong>： 它是有主副本(大哥)和从副本(小弟)两部分，数据会先同步到主副本然后在从副本会把消息拉到自己这，消费者和生产者都是和主副本交互的(毕竟有事得找大哥)。</p>
 
 
         <hr>
@@ -542,7 +533,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=Kafka Send Msg Process&body=Hi,I found this website and thought you might like it https://jiur.xyz/cn/Kafka-Send-Msg/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Kafka 入门学习&body=Hi,I found this website and thought you might like it https://jiur.xyz/cn/Kafka-Send-Msg/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -630,7 +621,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">目录</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#kafka-%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">kafka 发送消息</span></a></li></ol>
+          <ol class="nav">none</ol>
         
         </div>
       </aside>
